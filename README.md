@@ -99,6 +99,7 @@ spec:
       containers:
       - name: quotes-app
         image: atuljkamble/quotes-app:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000
 ```
