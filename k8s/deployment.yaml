@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: quotes-app
-        image: atuljkamble/quotes-app:latest
+        image: docker.io/atuljkamble/quotes-app:latest
         ports:
         - containerPort: 5000
