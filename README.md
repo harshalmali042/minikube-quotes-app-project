@@ -98,7 +98,7 @@ spec:
     spec:
       containers:
       - name: quotes-app
-        image: quotes-app:latest
+        image: atuljkamble/quotes-app:latest
         ports:
         - containerPort: 5000
 ```
@@ -136,7 +136,7 @@ minikube start --driver=docker
 
 ```bash
 eval $(minikube docker-env)
-docker build -t quotes-app:latest .
+docker build -t atuljkamble/quotes-app:latest .
 ```
 
 3️⃣ **Deploy to Kubernetes**
@@ -185,7 +185,7 @@ A simple Python Flask web app deployed on Kubernetes using Minikube (Docker Desk
 ```bash
 minikube start --driver=docker
 eval $(minikube docker-env)
-docker build -t quotes-app:latest .
+docker build -t atuljkamble/quotes-app:latest .
 kubectl apply -f k8s/
 minikube service quotes-service
 ````
