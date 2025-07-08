@@ -137,8 +137,8 @@ minikube start --driver=docker
 
 ```bash
 eval $(minikube docker-env)
-docker build -t atuljkamble/quotes-app:latest .
-docker push atuljkamble/quotes-app:latest 
+docker build -t docker.io/atuljkamble/quotes-app:latest .
+docker push docker.io/atuljkamble/quotes-app:latest 
 ```
 
 3️⃣ **Deploy to Kubernetes**
