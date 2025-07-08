@@ -132,11 +132,12 @@ spec:
 minikube start --driver=docker
 ```
 
-2️⃣ **Build Docker image inside Minikube’s Docker**
+2️⃣ **Build Docker image inside Minikube’s Docker & Push to Dockerhub**
 
 ```bash
 eval $(minikube docker-env)
 docker build -t atuljkamble/quotes-app:latest .
+docker push atuljkamble/quotes-app:latest 
 ```
 
 3️⃣ **Deploy to Kubernetes**
