@@ -1,4 +1,4 @@
-## 📦 Final Project Structure
+## 📦 Project Structure
 
 ```
 minikube-quotes-app/
