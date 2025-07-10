@@ -126,82 +126,6 @@ minikube-quotes-app/
 
 ---
 
-## 📌 Author
-
-👤 Atul Kamble
-
----
-
-## 📜 License
-
-MIT License
-
-
----
-
-## 📃 Updated `Dockerfile`
-
-```dockerfile
-FROM python:3.11-slim
-
-WORKDIR /app
-
-COPY app.py /app/
-COPY requirements.txt /app/
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-EXPOSE 5000
-
-CMD ["python", "app.py"]
-````
-
----
-
-## 📃 Updated `k8s/deployment.yaml`
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: minikube-quotes-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: minikube-quotes
-  template:
-    metadata:
-      labels:
-        app: minikube-quotes
-    spec:
-      containers:
-      - name: minikube-quotes-container
-        image: minikube-quotes-app:latest
-        imagePullPolicy: Never
-        ports:
-        - containerPort: 5000
-```
-
----
-
-## 📃 Updated `k8s/service.yaml`
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: minikube-quotes-service
-spec:
-  type: NodePort
-  selector:
-    app: minikube-quotes
-  ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-      nodePort: 30080
-```
 ```
 minikube dashboard
 ```
@@ -209,4 +133,20 @@ minikube dashboard
 minikube service minikube-quotes-service
 
 ```
+---
+
+**Atul Kamble**
+
+- 💼 [LinkedIn](https://www.linkedin.com/in/atuljkamble)
+- 🐙 [GitHub](https://github.com/atulkamble)
+- 🐦 [X](https://x.com/Atul_Kamble)
+- 📷 [Instagram](https://www.instagram.com/atuljkamble)
+- 🌐 [Website](https://www.atulkamble.in)
+
+---
+
+## 📜 License
+
+MIT License
+
 ---
