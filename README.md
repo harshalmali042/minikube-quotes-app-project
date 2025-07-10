@@ -1,217 +1,204 @@
-## 📦 Project Idea: **Simple Quotes Web App on Minikube**
+## 📦 Final Project Structure
 
-A basic web app (Node.js or Python Flask) that serves random quotes via HTTP, containerized via Docker, deployed on Kubernetes via Minikube, exposed using a **LoadBalancer** service.
-
----
-
-## 📁 Directory Structure
-
-```bash
+```
 minikube-quotes-app/
+├── app.py
 ├── Dockerfile
-├── app/
-│   └── app.py
 ├── requirements.txt
 ├── k8s/
 │   ├── deployment.yaml
 │   └── service.yaml
-├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 📜 Application Code — `app/app.py` (Python Flask Example)
+## 📑 Updated `README.md` for **minikube-quotes-app**
 
-```python
-from flask import Flask
-import random
+````markdown
+# 📖 Minikube Quotes App 🚀
 
-app = Flask(__name__)
+A lightweight Python Flask web app serving random developer wisdom quotes, EQ reflections, and coding GIFs — deployable easily on **Docker** and **Minikube (Kubernetes)**!
 
-quotes = [
-    "Stay hungry, stay foolish.",
-    "Talk is cheap. Show me the code.",
-    "First, solve the problem. Then, write the code.",
-    "Code never lies, comments sometimes do."
-]
+---
 
-@app.route('/')
-def get_quote():
-    return f"<h2>{random.choice(quotes)}</h2>"
+## 📦 Features
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+- 📝 30 developer wisdom quotes
+- 🎨 20 coding-themed GIFs
+- 💖 10 EQ affirmations
+- 🔄 No immediate GIF repeats
+- 📄 JSON API endpoint
+- 📊 Health check route
+- 🐳 Docker container support
+- ☸️ Minikube-ready Kubernetes deployment
+
+---
+
+## 📥 Local Installation & Usage
+
+### 📦 Install dependencies
+
+```bash
+pip install -r requirements.txt
+````
+
+### ▶️ Run locally
+
+```bash
+python app.py
+```
+
+Visit: `http://localhost:5000/`
+
+---
+
+## 🐳 Docker Deployment
+
+### 📦 Build Docker image
+
+```bash
+docker build -t minikube-quotes-app .
+```
+
+### ▶️ Run Docker container
+
+```bash
+docker run -d -p 5000:5000 minikube-quotes-app
+```
+
+Visit: `http://localhost:5000/`
+
+---
+
+## ☸️ Minikube Kubernetes Deployment
+
+### 📦 Load Docker image into Minikube
+
+```bash
+minikube image load minikube-quotes-app:latest
+```
+
+### 📄 Apply Kubernetes manifests
+
+```bash
+kubectl apply -f k8s/
+```
+
+### 📊 Expose the service
+
+```bash
+minikube service minikube-quotes-service
+```
+
+It will open your app in the browser.
+
+---
+
+## 📑 JSON API Endpoints
+
+* `http://localhost:5000/?format=json`
+* `http://localhost:5000/health`
+
+---
+
+## 📚 Project Structure
+
+```
+minikube-quotes-app/
+├── app.py
+├── Dockerfile
+├── requirements.txt
+├── k8s/
+│   ├── deployment.yaml
+│   └── service.yaml
+└── README.md
 ```
 
 ---
 
-## 📦 Dockerfile
+## 📌 Author
+
+👤 Atul Kamble
+
+---
+
+## 📜 License
+
+MIT License
+
+---
+
+## ⭐️ Star This Repo!
+
+If you enjoy it — drop a ⭐️ on this repo!
+
+````
+
+---
+
+## 📃 Updated `Dockerfile`
 
 ```dockerfile
-# Use Python base image
 FROM python:3.11-slim
 
-# Set work directory
 WORKDIR /app
 
-# Copy app code
-COPY app/ /app
-COPY requirements.txt .
+COPY app.py /app/
+COPY requirements.txt /app/
 
-# Install dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port
 EXPOSE 5000
 
-# Run the app
 CMD ["python", "app.py"]
-```
+````
 
 ---
 
-## 📜 `requirements.txt`
-
-```
-flask
-```
-
----
-
-## 📦 Kubernetes Deployment — `k8s/deployment.yaml`
+## 📃 Updated `k8s/deployment.yaml`
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quotes-app
+  name: minikube-quotes-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: quotes-app
+      app: minikube-quotes
   template:
     metadata:
       labels:
-        app: quotes-app
+        app: minikube-quotes
     spec:
       containers:
-      - name: quotes-app
-        image: atuljkamble/quotes-app:latest
-        imagePullPolicy: IfNotPresent
+      - name: minikube-quotes-container
+        image: minikube-quotes-app:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 5000
 ```
 
 ---
 
-## 📦 Kubernetes Service — `k8s/service.yaml`
+## 📃 Updated `k8s/service.yaml`
 
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: quotes-service
+  name: minikube-quotes-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
-    app: quotes-app
+    app: minikube-quotes
   ports:
     - protocol: TCP
-      port: 80
+      port: 5000
       targetPort: 5000
+      nodePort: 30080
 ```
 
 ---
-
-## ✅ Commands to Run (Mac + Docker Desktop + Minikube)
-
-1️⃣ **Start Minikube using Docker driver**
-
-```bash
-minikube start --driver=docker
-```
-
-2️⃣ **Build Docker image inside Minikube’s Docker & Push to Dockerhub**
-
-```bash
-eval $(minikube docker-env)
-docker build -t docker.io/atuljkamble/quotes-app:latest .
-docker push docker.io/atuljkamble/quotes-app:latest 
-```
-
-3️⃣ **Deploy to Kubernetes**
-
-```bash
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
-```
-
-4️⃣ **Access the Service URL**
-
-```bash
-minikube service quotes-service
-```
-
-> It will open your browser at the external LoadBalancer URL.
-
----
-
-## 📄 .gitignore
-
-```
-__pycache__/
-.env
-*.pyc
-*.pyo
-.DS_Store
-```
-
----
-
-## 📑 README.md Overview
-
-````markdown
-# 📝 Quotes Web App on Minikube
-
-A simple Python Flask web app deployed on Kubernetes using Minikube (Docker Desktop as runtime), exposing a LoadBalancer service accessible via browser.
-
-## 📦 Project Setup
-- Python Flask app
-- Dockerized
-- Deployed with Kubernetes Deployment + LoadBalancer Service
-- Load-balanced output via browser on Minikube
-
-## 🚀 Quickstart
-```bash
-minikube start --driver=docker
-eval $(minikube docker-env)
-docker build -t atuljkamble/quotes-app:latest .
-kubectl apply -f k8s/
-minikube service quotes-service
-````
-
-## 📸 Output
-
-![app-screenshot](images/app-output.png)
-
----
-
-```
-
----
-
-## ✅ Bonus: Auto Image Push (Optional)
-You can also push your Docker image to Docker Hub and pull it inside Minikube if you prefer.
-
----
-
-## 📌 Final Note:
-This project is:
-- Lightweight ✅
-- No external cloud dependency ✅
-- Visual browser output ✅
-- Load Balancer service ✅
-- Docker Desktop on Mac compatible ✅
-- Clean repo-ready ✅
