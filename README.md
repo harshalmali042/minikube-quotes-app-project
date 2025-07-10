@@ -10,7 +10,15 @@ minikube-quotes-app/
 │   └── service.yaml
 └── README.md
 ```
-
+```
+cd Downloads
+git clone https://github.com/atulkamble/minikube-quotes-app.git
+cd minikube-quotes-app
+```
+## minikube start 
+```
+minikube start
+```
 ---
 
 ## **minikube-quotes-app**
