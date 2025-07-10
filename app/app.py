@@ -22,10 +22,10 @@ quotes = [
     "Make it work, make it right, make it fast."
 ]
 
-# Emojis list
+# Emojis
 emojis = ["🔥", "💻", "🧠", "🔍", "🚀", "🎯", "🐍", "🤖", "⚙️", "📖", "🧩", "📊", "🛡️", "🧪", "🎨", "😎", "🤯", "🎉", "🦾", "📚"]
 
-# Emotional Intelligence quotes
+# Emotional Intelligence Messages
 eq_quotes = [
     "🧘 Stay calm — not every battle is worth fighting.",
     "💡 Self-awareness is the foundation of emotional intelligence.",
@@ -39,40 +39,51 @@ eq_quotes = [
     "🌱 Growth starts where comfort ends."
 ]
 
-# HTML template
+# GIF URLs
+gifs = [
+    "https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif",
+    "https://media.giphy.com/media/3o7abldj0b3rxrZUxW/giphy.gif",
+    "https://media.giphy.com/media/l3vR85PnGsBwu1PFK/giphy.gif",
+    "https://media.giphy.com/media/fAnEC88LccN7a/giphy.gif",
+    "https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif",
+    "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif",
+    "https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif"
+]
+
+# HTML Template
 html_template = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Daily Dev Wisdom & EQ</title>
+    <title>Dev & EQ Daily Boost</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+            background-color: #eef2f3;
             text-align: center;
             padding-top: 50px;
         }
         h2, h3 {
-            color: #333;
             margin: 20px auto;
         }
         h2 {
             font-size: 2rem;
+            color: #222;
         }
         h3 {
-            font-size: 1.3rem;
-            color: #666;
+            font-size: 1.2rem;
+            color: #555;
         }
         img {
             width: 300px;
             height: auto;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
-    <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="Coding GIF">
+    <img src="{{ gif_url }}" alt="Random Dev GIF">
     <h2>{{ emoji }} {{ quote }}</h2>
     <h3>{{ eq_quote }}</h3>
 </body>
@@ -84,15 +95,17 @@ def get_quote():
     quote = random.choice(quotes)
     emoji = random.choice(emojis)
     eq_quote = random.choice(eq_quotes)
-    # JSON format
+    gif_url = random.choice(gifs)
+
     if request.args.get('format') == 'json':
         return jsonify({
             "emoji": emoji,
             "quote": quote,
-            "emotional_intelligence": eq_quote
+            "emotional_intelligence": eq_quote,
+            "gif_url": gif_url
         })
-    # HTML rendering
-    return render_template_string(html_template, quote=quote, emoji=emoji, eq_quote=eq_quote)
+
+    return render_template_string(html_template, quote=quote, emoji=emoji, eq_quote=eq_quote, gif_url=gif_url)
 
 @app.route('/health')
 def health_check():
