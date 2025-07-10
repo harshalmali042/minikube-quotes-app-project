@@ -15,6 +15,13 @@ cd Downloads
 git clone https://github.com/atulkamble/minikube-quotes-app.git
 cd minikube-quotes-app
 ```
+## 📸 Screenshots
+
+### 🖥️ App Interface  
+![Minikube Quotes App](screenshots/quotes-app.png)
+
+---
+
 ## minikube start 
 ```
 minikube start
