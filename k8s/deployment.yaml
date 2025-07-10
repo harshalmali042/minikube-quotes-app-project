@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: minikube-quotes-container
-        image: docker.io/atuljkamble/minikube-quotes-app:latest
-        imagePullPolicy: Never
+        image: atuljkamble/minikube-quotes-app:latest
+        imagePullPolicy: IfNotPresent
+
         ports:
         - containerPort: 5000
