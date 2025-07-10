@@ -136,13 +136,6 @@ minikube-quotes-app/
 
 MIT License
 
----
-
-## ⭐️ Star This Repo!
-
-If you enjoy it — drop a ⭐️ on this repo!
-
-````
 
 ---
 
@@ -209,5 +202,7 @@ spec:
       targetPort: 5000
       nodePort: 30080
 ```
-
+```
+minikube dashboard
+```
 ---
