@@ -13,7 +13,7 @@ minikube-quotes-app/
 
 ---
 
-## 📑 Updated `README.md` for **minikube-quotes-app**
+## **minikube-quotes-app**
 
 ````markdown
 # 📖 Minikube Quotes App 🚀
