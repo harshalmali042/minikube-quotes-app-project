@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quotes-app
+  name: minikube-quotes-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: quotes-app
+      app: minikube-quotes
   template:
     metadata:
       labels:
-        app: quotes-app
+        app: minikube-quotes
     spec:
       containers:
-      - name: quotes-app
-        image: docker.io/atuljkamble/quotes-app:latest
+      - name: minikube-quotes-container
+        image: minikube-quotes-app:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 5000
