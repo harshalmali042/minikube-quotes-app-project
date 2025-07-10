@@ -55,16 +55,17 @@ Visit: `http://localhost:5000/`
 
 ## 🐳 Docker Deployment
 
-### 📦 Build Docker image
+### 📦 Build and Push Docker image
 
 ```bash
-docker build -t minikube-quotes-app .
+docker build -t atuljkamble/minikube-quotes-app .
+docker push atuljkamble/minikube-quotes-app
 ```
 
 ### ▶️ Run Docker container
 
 ```bash
-docker run -d -p 5000:5000 minikube-quotes-app
+docker run -d -p 5000:5000 atuljkamble/minikube-quotes-app
 ```
 
 Visit: `http://localhost:5000/`
