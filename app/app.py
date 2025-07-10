@@ -47,8 +47,22 @@ gifs = [
     "https://media.giphy.com/media/fAnEC88LccN7a/giphy.gif",
     "https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif",
     "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif",
-    "https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif"
+    "https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif",
+    "https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif",
+    "https://media.giphy.com/media/13HgwGsXF0aiGY/giphy.gif",
+    "https://media.giphy.com/media/l2SpPLRY0MNi53zqI/giphy.gif",
+    "https://media.giphy.com/media/kDcfy1jSr9M6k/giphy.gif",
+    "https://media.giphy.com/media/Y4pAQv58ETJgRwoLxj/giphy.gif",
+    "https://media.giphy.com/media/3o6nURkRnx5rOUgv20/giphy.gif",
+    "https://media.giphy.com/media/xUPGcjGy8I928yIlAQ/giphy.gif",
+    "https://media.giphy.com/media/LHZyixOnHwDDy/giphy.gif",
+    "https://media.giphy.com/media/l3vQX0FjSfT3uZ3iY/giphy.gif",
+    "https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif",
+    "https://media.giphy.com/media/TilmLMmWrRYYHjLfub/giphy.gif",
+    "https://media.giphy.com/media/d31vTpVi1LAcDvdm/giphy.gif",
+    "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"
 ]
+
 
 # HTML Template
 html_template = """
