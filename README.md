@@ -205,4 +205,8 @@ spec:
 ```
 minikube dashboard
 ```
+```
+minikube service minikube-quotes-service
+
+```
 ---
