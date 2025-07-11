@@ -140,6 +140,67 @@ minikube dashboard
 minikube service minikube-quotes-service
 
 ```
+# Commands
+```
+cd Downloads
+git clone https://github.com/atulkamble/minikube-quotes-app.git
+cd minikube-quotes-app
+cd app
+// manually run app
+
+python3 app.py
+
+docker login 
+
+// build image and push to dockerhub 
+
+docker build -t atuljkamble/minikube-quotes-app .
+docker push atuljkamble/minikube-quotes-app
+
+// locally create container 
+
+docker run -d -p 5000:5000 atuljkamble/minikube-quotes-app
+
+// access from browser 
+
+http://localhost:5000/
+
+// stop container 
+
+docker container stop b6c3480f212f
+
+// start k8s cluster 
+
+minikube start
+
+minikube addons enable metrics-server
+
+minikube dashboard 
+
+// update your dockerhub username in k8s/deployment.yaml
+
+// apply yaml templates 
+
+kubectl apply -f k8s
+
+// list nodes, deployments,, services, pods 
+
+kubectl get nodes
+kubectl get deployments
+kubectl get pods
+kubectl get svc
+
+kubectl get all 
+
+minikube service minikube-quotes-service
+
+// open output in browser 
+
+http://127.0.0.1:50891
+
+minikube ip
+
+```
 ---
 
 **Atul Kamble**
