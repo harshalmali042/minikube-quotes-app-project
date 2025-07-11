@@ -142,6 +142,12 @@ minikube service minikube-quotes-service
 ```
 # Commands
 ```
+// docker desktop 
+
+// for ec2 | refer https://github.com/atulkamble/ec2-minikube
+
+// from your local machine 
+
 cd Downloads
 git clone https://github.com/atulkamble/minikube-quotes-app.git
 cd minikube-quotes-app
