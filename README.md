@@ -207,6 +207,54 @@ http://127.0.0.1:50891
 minikube ip
 
 ```
+
+# on ec2-minikube
+```
+sudo yum update -y
+sudo yum install git -y
+git config --global user.name "Atul Kamble"
+git config --global user.email "atul_kamble@hotmail.com"
+git config --list 
+sudo yum install git -y
+sudo yum install docker -y 
+sudo systemctl start docker
+sudo systemctl enable docker 
+
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+sudo usermod -aG docker $USER && newgrp docker
+
+minikube status
+kubectl get nodes
+kubectl get pods -A
+
+minikube start --driver=docker --cpus=2 --memory=4096
+OR
+minikube start
+minikube addons enable default-storageclass
+minikube addons enable storage-provisioner
+minikube addons enable metrics-server
+minikube addons enable dashboard
+minikube addons enable metrics-server
+git clone https://github.com/atulkamble/minikube-quotes-app.git
+cd minikube-quotes-app/
+sudo docker login
+docker build -t atuljkamble/minikube-quotes-app .
+docker push atuljkamble/minikube-quotes-app
+sudo docker push atuljkamble/minikube-quotes-app
+kubectl apply -f k8s/
+minikube service minikube-quotes-service
+wget http://192.168.49.2:30080
+cat index.html 
+minikube stop 
+minikube delete 
+
+```
 ---
 
 **Atul Kamble**
