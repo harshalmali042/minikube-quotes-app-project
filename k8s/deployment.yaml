@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: minikube-quotes-container
-        image: atuljkamble/minikube-quotes-app:latest
+        image: harsh042/minikube-quotes-app:latest
         imagePullPolicy: IfNotPresent
 
         ports:
